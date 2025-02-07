@@ -10,6 +10,7 @@
 
 (set-face-attribute 'default nil :font "FiraCode Nerd Font")
 
-(load-theme 'tango-dark) 
-;(load-theme 'dracula) 
+(load-theme 'doom-dracula t)
 
+(set-frame-parameter nil 'alpha-background 70)
+(add-to-list 'default-frame-alist '(alpha-background . 70))

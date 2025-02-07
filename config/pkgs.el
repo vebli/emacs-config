@@ -1,8 +1,9 @@
+
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
-			 ("gnu" . "https://elpa.gnu.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
 
@@ -16,6 +17,22 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package vterm
+  :ensure t)
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+(use-package doom-themes
+  :ensure t
+ ) 
 
 (use-package ivy
   :diminish
@@ -35,65 +52,14 @@
   :config
   (ivy-mode 1))
 
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-undo-system 'undo-redo)
-  :config
-  (evil-mode 1))
-
-(use-package evil-org
-  :after org
-  :hook (org-mode . evil-org-mode)
-  :config
-  (require 'evil-org)
-  (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
-
-
-(use-package org
-  :ensure t  
-  :pin gnu  
-  :config
-  (setq org-startup-indented t       ;; Pretty indentation
-        org-hide-leading-stars t      ;; Hide leading stars in headings
-        org-ellipsis " ⬎"))          ;; Nice folding symbol
-
-(use-package dracula-theme
+(use-package all-the-icons
   :ensure t)
 
-(use-package general
-  :after evil
-  :config
-  (general-create-definer leader
-    :states '(normal visual motion) ;; Define states here
-    :keymaps 'override  ;; Ensures it works globally
-    :prefix "SPC")  ;; Sets Space as leader key
-
-  (leader
-    "ff" 'find-file
-    "bm" 'switch-to-buffer
-    "h" 'help-command))
-
-  
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)  
-   (python . t)       
-   (shell . t)
-   (C . t)
-   (makefile . t)
-   (matlab . t)
-   (haskell . t)
-   (latex . t)
-   (sql . t)
-   (lua . t)
-   (java . t)
-   (js . t)))        
+(load (expand-file-name "config/pkgs/evil.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/org.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/general.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/dev.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/dashboard.el" user-emacs-directory))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
