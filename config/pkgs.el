@@ -18,48 +18,29 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package vterm
-  :ensure t)
+(use-package magit)
 
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
+(use-package vterm)
+
 
 (use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  )
 
-(use-package doom-themes
-  :ensure t
- ) 
+(use-package doom-themes) 
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode)
+  )
 
-(use-package all-the-icons
-  :ensure t)
+(use-package all-the-icons) ; Need to be installed with 'M-x all-the-icons-install-fonts'
 
 (load (expand-file-name "config/pkgs/evil.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/org.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/general.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dev.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dashboard.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/completions.el" user-emacs-directory))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -16,7 +16,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(vterm doom-themes modern-cpp-font-lock company lsp-ui lsp-mode org-roam general evil-org ivy evil command-log-mode)))
+   '(ob-sagemath helpful counsel ivy-rich rainbow-delimiters openwith org-download evil-collection magit vterm doom-themes modern-cpp-font-lock company lsp-ui lsp-mode org-roam general evil-org ivy evil command-log-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
