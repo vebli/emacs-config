@@ -22,15 +22,16 @@
   (which-key-mode 1))
 
 
-(use-package ivy-rich
-  :after ivy
-  :init (ivy-rich-mode 1)
-  )
-
 (use-package counsel
-  :after ivy-rich
   :bind (("M-x" . counsel-M-x))
   )
+
+(use-package ivy-rich
+    :after (ivy counsel)
+    :config
+  (ivy-rich-mode 1)
+  )
+
 
 (use-package helpful
   :bind 

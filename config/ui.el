@@ -16,7 +16,11 @@
 
 (setq ring-bell-function 'ignore)  
 
+
 (set-face-attribute 'default nil :font "FiraCode Nerd Font")
+(set-face-attribute 'variable-pitch nil :font "Inter") 
+(set-face-attribute 'fixed-pitch nil :family "Courier New")
+
 
 (load-theme 'doom-laserwave t)
 
