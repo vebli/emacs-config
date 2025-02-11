@@ -17,13 +17,11 @@
 
 (use-package magit)
 
-(use-package vterm)
-
-
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
   )
 
+(use-package toggle-term)
 (use-package doom-themes) 
 
 (use-package rainbow-delimiters

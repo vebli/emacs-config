@@ -15,7 +15,9 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  (ivy-mode 1))
+  (ivy-mode 1)
+  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))) ;; Enable fuzzy matching
+  )
 
 (use-package which-key
   :config

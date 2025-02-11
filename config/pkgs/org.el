@@ -1,24 +1,25 @@
-(use-package visual-fill-column) 
 
+
+(use-package visual-fill-column) 
 (use-package org
   :pin gnu  
   :hook (org-mode . vebly/org-mode-setup)
   :custom
-  (org-startup-indented t)   
   (org-startup-with-inline-images t)
   (org-startup-with-latex-preview t)
-  (org-latex-preview-default-process 'dvisvgm)
   (org-ellipsis " ⬎")
-  (org-hide-emphasis-markers t)
-  (org-agenda-start-with-log-mode t)
-  (org-log-done 'time)
-  (org-log-into-drawer t) 
+  ;(org-latex-preview-default-process 'dvisvgm)
+  ;(org-hide-emphasis-markers t)
+  ;(org-agenda-start-with-log-mode t)
+  ;(org-log-done 'time)
+  ;(org-log-into-drawer t) 
+  (org-agenda-files
+	(seq-filter (lambda (file) (not (string-match "/\\.#" file)))
+		    (append (directory-files-recursively "~/org/Agenda/" "\\.org$")
+			    (directory-files-recursively "~/org/Projects/" "\\.org$")
+			    (directory-files-recursively "~/org/Permanent/" "\\.org$")
+			    (directory-files-recursively "~/org/Fleeting/" "\\.org$"))))
   :config
- (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
-
   (defun vebly/org-latex-refresh ()
     "Refresh LaTeX preview when cursor leaves the equation."
     (when (org-inside-LaTeX-fragment-p)
@@ -33,11 +34,14 @@
 
   (defun vebly/org-mode-setup ()
     "Custom orgmode hook"
-    (org-indent-mode)
     (visual-line-mode 1) ; Enable soft line wrapping
     (vebly/org-mode-visual-fill) ; from visual-fill-column package
     (add-hook 'post-command-hook #'vebly/org-latex-refresh nil t)
     )
+
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
 
   (custom-theme-set-faces
    'user
@@ -48,7 +52,6 @@
    '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch))))) ;; Meta lines
    '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch))))) ;; Keywords
    )
-
 
   (dolist (face '((org-level-1 . 1.2)
 		(org-level-2 . 1.15)
@@ -69,48 +72,49 @@
   (org-roam-directory (file-truename "~/org"))
   (org-roam-dailies-directory (file-truename "~/org/Journal/Dailies/"))
   (org-roam-complete-everywhere t)
+  (org-roam-capture-templates
+   '(("d" "default" plain "%?"
+      :if-new (file+head "Permanent/${title}.org" "#+title: ${title}\n")
+      :unnarrowed t)
+
+     ("p" "Projects" plain "%?"
+      :if-new (file+head "Projects/${title}/${title}.org" "#+title: 0-${title}\n")
+      :unnarrowed t)
+     )
+   )
+
+  (org-roam-dailies-capture-templates
+   '(("d" "default" plain "* %?"
+      :target (file+head "%<%Y-%m-%d>.org"
+			 "#+title: %<%Y-%m-%d>\n")))
+   )
   :bind
   (("C-c n l" . org-roam-buffer-toggle)
    ("C-c n f" . org-roam-node-find)
    ("C-c n i" . org-roam-node-insert))
   :config
   (org-roam-db-autosync-mode)
-  (setq org-roam-capture-templates
-    '(("d" "default" plain "%?"
-       :if-new (file+head "Permanent/${slug}.org" "#+title: ${title}\n")
-       :unnarrowed t)
-
-    ("p" "Projects" plain "%?"
-       :if-new (file+head "Projects/${title}/${title}.org" "#+title: 0-${title}\n")
-       :unnarrowed t)
-      )
-    )
-  (setq org-roam-dailies-capture-templates
-	'(("d" "default" plain "* %?"
-	   :target (file+head "%<%Y-%m-%d>.org"
-			      "#+title: %<%Y-%m-%d>\n")))
-	)
 )
 
 (use-package org-modern
   :after org
-  :hook (org-mode . org-modern-mode))
+  :hook (org-mode . org-modern-mode)
+  )
   
 (use-package org-download
   :after org
   :hook
   (dired-mode . org-download-enable)
-  :config
-  (setq-default org-download-image-dir "~/org/06\ -\ Resources/Images")
-  (setq org-download-timestamp "%Y%m%d-%H%M%S_")
+  :custom
+  (org-download-image-dir "~/org/Resources/Images/")
+  (org-download-timestamp "%Y%m%d-%H%M%S_")
   )
-
 
 (use-package openwith
   :after org
   :hook (org-mode . (lambda () (openwith-mode 1)))
-  :config
-  (setq openwith-associations
+  :custom
+  (openwith-associations
         '(("\\.pdf\\'" "okular" (file))
           ("\\.mp3\\'" "mpv" (file))))
   )

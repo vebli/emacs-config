@@ -11,10 +11,13 @@
 (dolist (mode '(org-mode-hook
 		term-mode-hook
 		shell-mode-hook
-		eshell-mode-hook))
+		eshell-mode-hook
+		vterm-mode-hook
+        ))
   (add-hook mode(lambda() (display-line-numbers-mode 0))))
 
 (setq ring-bell-function 'ignore)  
+
 
 
 (set-face-attribute 'default nil :font "FiraCode Nerd Font")
