@@ -1,4 +1,20 @@
+;; unbind some emacs keys
+(dolist (k '("C-p" "C-n" "C-f" "C-b" "C-a" "C-e"
+             "C-k" "C-d" "C-j" "C-o" "C-w" "M-d" "M-DEL" "M-l" "M-u" "M-c"
+	     "C-?" "C-/" "C-_"
+	     ))
+  (global-unset-key (kbd k)))
 
+(global-set-key (kbd "C-/") help-map)
+
+;; window navigation
+(global-set-key (kbd "C-h") 'windmove-left)
+(global-set-key (kbd "C-j") 'windmove-down)
+(global-set-key (kbd "C-k") 'windmove-up)
+(global-set-key (kbd "C-l") 'windmove-right)
+
+
+;; Leader keys
 (general-create-definer leader
   :states '(normal visual motion) ;; Define states here
   :keymaps 'override  ;; Ensures it works globally
@@ -9,6 +25,7 @@
   :keymaps 'lsp-mode-map ;; Ensures it works globally
   :prefix "SPC")  ;; Sets Space as leader key
 
+;; Vim style keybinds
 (leader
   "mx" '(counsel-M-x :which-key "Execute command")
   "ff" '(find-file :which-key "Find file")
@@ -17,6 +34,9 @@
   "bm" '(counsel-switch-buffer :which-key "List buffers")
   "h" '(help-command :which-key "Help")
   "tt" '(toggle-term-term :which-key "Toggle terminal")
+  "x" '(:ignore t :which-key "eval")
+  "xx" '(eval-last-sexp :which-key "eval sexp")
+  "xb" '(eval-buffer :which-key "eval buffer")
   )
 
 (with-eval-after-load 'lsp-mode
@@ -26,13 +46,4 @@
     "gr" '(lsp-find-references :which-key "Find references")
     )
   )
-
-(evil-ex-define-cmd "q" 
-  (lambda ()
-    "Close window and kill buffer, like in Vim."
-    (interactive)
-    (kill-buffer)
-    (if (> (count-windows) 1)
-        (delete-window)
-      (previous-buffer))))
 

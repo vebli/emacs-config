@@ -23,3 +23,9 @@
   (evil-collection-init)
   (evil-collection-define-key 'normal 'dired-mode-map
     (kbd "RET") 'dired-find-file))
+
+(use-package evil-commentary
+  :ensure t
+  :after evil
+  :config
+  (evil-commentary-mode))

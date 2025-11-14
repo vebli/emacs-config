@@ -19,10 +19,9 @@
 (setq ring-bell-function 'ignore)  
 
 
-;(load-theme 'doom-laserwave t)
 
-;(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 125)
-;(set-face-attribute 'variable-pitch nil :font "Inter") 
-;(set-face-attribute 'fixed-pitch nil :family "Courier New")
+(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 135)
+;;(set-face-attribute 'variable-pitch nil :font "Inter") 
+;;(set-face-attribute 'fixed-pitch nil :family "Courier New")
 
-(load-theme 'tao-yin t)
+(load-theme 'sexy-monochrome t)

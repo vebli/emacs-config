@@ -4,11 +4,16 @@
   :hook ((c-mode . lsp-deferred)
          (c++-mode . lsp-deferred)
          (nix-mode . lsp-deferred)
-        (python-mode . lsp-deferred))
+         (python-mode . lsp-deferred)
+	 (haskell-mode . lsp-deferred)
+	 )
   :commands (lsp lsp-deferred)
   :config
   ;(setq lsp-prefer-flymake nil)
 (lsp-enable-which-key-integration t))
+
+(use-package dap-mode
+  :hook (dap-mode))
 
 (use-package lsp-ui
   :ensure t
