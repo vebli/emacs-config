@@ -29,6 +29,7 @@
 (leader
   "mx" '(counsel-M-x :which-key "Execute command")
   "ff" '(find-file :which-key "Find file")
+  "fp" 'projectile-switch-project
   "bn" '(next-buffer :which-key "Next buffer")
   "bp" '(previous-buffer :which-key "Previous buffer")
   "bm" '(counsel-switch-buffer :which-key "List buffers")
@@ -44,6 +45,28 @@
     "rn" '(lsp-rename :which-key "Rename Symbol")
     "gd" '(lsp-find-definition :which-key "Go to definition")
     "gr" '(lsp-find-references :which-key "Find references")
+    "gi" '(lsp-find-implementation :which-key "Find implementation")
+    "gt" '(lsp-find-type-definition :which-key "Find type definition")
+    ;; "fc" 'projectile-toggle-between-implementation-and-test
+    "fc" 'lsp-clangd-find-other-file
+    "K" 'lsp-ui-doc-glance
+    "td" 'flymake-show-project-diagnostics
+    "]g" 'flymake-goto-next-error
+    "[g" 'flymake-goto-prev-error
+    "la" '(lsp-execute-code-action :which-key "Code action")
+    "lf" 'lsp-format-buffer
+    "lh" 'lsp-treemacs-call-hierarchy
+    "ls" 'lsp-treemacs-symbols
+    "lg" 'projectile-ripgrep
     )
   )
 
+
+(evil-ex-define-cmd "q" 
+  (lambda ()
+    "Close window and kill buffer, like in Vim."
+    (interactive)
+    (kill-buffer)
+    (if (> (count-windows) 1)
+	(delete-window)
+    (previous-buffer))))

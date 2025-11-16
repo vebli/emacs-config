@@ -1,5 +1,6 @@
 (use-package projectile
   :ensure t
+  :init
+  (projectile-mode +1) 
   :config
-  (projectile-mode 1)
-  (setq projectile-completion-system 'ivy))
+  (setq projectile-completion-system 'ivy)) 
