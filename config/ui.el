@@ -1,5 +1,7 @@
 (setq inhibit-startup-message t)
 (setq display-line-numbers-type 'relative)  
+(setq lsp-semantic-tokens-enable t)
+(setq ring-bell-function 'ignore)  
 (global-display-line-numbers-mode t)       
 (scroll-bar-mode -1) 
 (tool-bar-mode -1)
@@ -19,9 +21,29 @@
         ))
   (add-hook mode(lambda() (display-line-numbers-mode 0))))
 
-(setq ring-bell-function 'ignore)  
 
-(set-face-attribute 'default nil :font "FiraCode Nerd Font" :height 135)
+(set-face-attribute 'default nil
+  :family "FiraCode Nerd Font"
+  :weight 'medium
+  :width 'medium
+  :height 140)
+
+;; Ligatures
+(use-package ligature)
+(ligature-set-ligatures 't '("www"))
+(ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                                     ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                                     "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                                     "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                                     "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                                     "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                                     "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                                     "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                                     "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                                     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+
+(global-ligature-mode 't)
+
 ;;(set-face-attribute 'variable-pitch nil :font "Inter") 
 ;;(set-face-attribute 'fixed-pitch nil :family "Courier New")
 
@@ -36,9 +58,7 @@
 (use-package all-the-icons) ; Need to be installed with 'M-x all-the-icons-install-fonts'
 
 ;; Themes
-(use-package constant-theme)
-(use-package tao-theme)
+ (add-to-list 'custom-theme-load-path "~/.emacs.d/config/themes/")
 (use-package doom-themes) 
-(use-package sexy-monochrome-theme)
 
 (load-theme 'sexy-monochrome t)

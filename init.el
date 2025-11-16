@@ -19,14 +19,7 @@
      "ff24d14f5f7d355f47d53fd016565ed128bf3af30eb7ce8cae307ee4fe7f3fd0"
      "720838034f1dd3b3da66f6bd4d053ee67c93a747b219d1c546c41c4e425daf93"
      default))
- '(package-selected-packages
-   '(auctex command-log-mode company constant-theme counsel dap-mode
-	    direnv doom-themes evil evil-collection evil-commentary
-	    evil-commentary-mode evil-org general helpful ivy ivy-rich
-	    lsp-mode lsp-ui magit modern-cpp-font-lock ob-sagemath
-	    openwith org-download org-roam pdf-tools projectile
-	    rainbow-delimiters sexy-monochrome-theme tao-theme
-	    term-toggle toggle-term visual-fill-column)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
