@@ -61,4 +61,4 @@
  (add-to-list 'custom-theme-load-path "~/.emacs.d/config/themes/")
 (use-package doom-themes) 
 
-(load-theme 'sexy-monochrome t)
+(load-theme 'minimal t)

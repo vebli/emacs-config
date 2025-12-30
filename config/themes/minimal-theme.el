@@ -1,10 +1,10 @@
-;;; sexy-monochrome-theme.el --- A sexy dark Emacs >= 24 theme for your sexy code
+;;; minimal-theme.el --- A sexy dark Emacs >= 24 theme for your sexy code
 
 ;; Copyright (c) 2017 Volodymyr Yevtushenko
 
 ;; Author: Volodymyr Yevtushenko <voloyev@vivaldi.net>
 ;; Keywords: themes
-;; URL: https://github.com/voloyev/sexy-monochrome-theme
+;; URL: https://github.com/voloyev/minimal-theme
 ;; Version: 3.0
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 
 ;; To use it, put the following in your Emacs configuration file:
 ;;
-;;   (load-theme 'sexy-monochrome t)
+;;   (load-theme 'minimal t)
 ;;
 ;; Requirements: Emacs >= 24.
 
@@ -38,7 +38,7 @@
 
 ;;; Code:
 
-(deftheme sexy-monochrome
+(deftheme minimal
   "Gray on black (with bit of light slate gray colours) theme for your hacking sessions.")
 
 (font-lock-add-keywords 'c-mode
@@ -64,7 +64,7 @@
       (error-color "#b30000"))
 
   (custom-theme-set-faces
-   'sexy-monochrome
+   'minimal
 
    `(default ((,class (:foreground ,lgray :background ,gblack))))
    `(cursor ((,class (:background ,lgray))))
@@ -318,7 +318,7 @@
                                           :slant unspecified :underline ,sgray)))))
    
   (custom-theme-set-variables
-   'sexy-monochrome
+   'minimal
    `(ansi-color-names-vector [,gblack ,lgray ,dgray ,sgray])))
 
 ;;;###autoload
@@ -326,9 +326,9 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'sexy-monochrome)
+(provide-theme 'minimal)
 
 ;; Local Variables:
 ;; End:
 
-;;; sexy-monochrome-theme.el ends here
+;;; minimal-theme.el ends here
