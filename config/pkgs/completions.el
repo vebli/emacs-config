@@ -1,3 +1,6 @@
+(use-package counsel
+  :bind (("M-x" . counsel-M-x))
+  )
 
 (use-package ivy
   :diminish
@@ -19,21 +22,22 @@
   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy))) ;; Enable fuzzy matching
   )
 
-(use-package which-key
-  :config
-  (which-key-mode 1))
-
-
-(use-package counsel
-  :bind (("M-x" . counsel-M-x))
-  )
-
 (use-package ivy-rich
     :after (ivy counsel)
     :config
   (ivy-rich-mode 1)
   )
 
+(use-package ivy-prescient
+  :ensure t
+  :after ivy
+  :config
+  (ivy-prescient-mode 1)
+  (prescient-persist-mode 1))
+
+(use-package which-key
+  :config
+  (which-key-mode 1))
 
 (use-package helpful
   :bind 

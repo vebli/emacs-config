@@ -20,6 +20,7 @@
 (require 'project)
 
 (load (expand-file-name "config/pkgs/evil.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/direnv.el" user-emacs-directory))
 ; (load (expand-file-name "config/pkgs/smartparens.el" user-emacs-directory))
 ; (load (expand-file-name "config/pkgs/org.el" user-emacs-directory))
 ; (load (expand-file-name "config/pkgs/projectile.el" user-emacs-directory))

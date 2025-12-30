@@ -1,45 +1,5 @@
-;;; minimal-theme.el --- A sexy dark Emacs >= 24 theme for your sexy code
-
-;; Copyright (c) 2017 Volodymyr Yevtushenko
-
-;; Author: Volodymyr Yevtushenko <voloyev@vivaldi.net>
-;; Keywords: themes
-;; URL: https://github.com/voloyev/minimal-theme
-;; Version: 3.0
-
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-;;; Commentary:
-
-;; To use it, put the following in your Emacs configuration file:
-;;
-;;   (load-theme 'minimal t)
-;;
-;; Requirements: Emacs >= 24.
-
-;;; Credits:
-
-;; Based on the Xavier Noria monochrome-theme
-;; https://github.com/fxn/monochrome-theme.el/
-
-;; And impressed by "Monochrome color scheme for Vim"
-;; https://github.com/fxn/vim-monochrome
-
-;;; Code:
-
 (deftheme minimal
-  "Gray on black (with bit of light slate gray colours) theme for your hacking sessions.")
+  "My theme")
 
 (font-lock-add-keywords 'c-mode
                         '(("\\(\\w+\\)\\s-*\("
@@ -206,6 +166,35 @@
    `(org-done ((t (:bold t :foreground "green"))))
    `(org-verbatim ((t (:foreground "dim gray"))))
 
+   ;; Company
+   `(company-tooltip
+     ((t (:foreground ,gwhite :background ,gblack))))
+
+   `(company-tooltip-selection
+     ((t (:background "#3b3b3b" :foreground ,gwhite))))
+
+   `(company-tooltip-common
+     ((t (:foreground ,gwhite :weight bold))))
+
+   `(company-tooltip-common-selection
+     ((t (:foreground ,gwhite :weight bold))))
+
+   `(company-tooltip-annotation
+     ((t (:foreground ,lgray :background ,gblack))))
+
+   `(company-scrollbar-bg
+     ((t (:background ,gblack))))
+
+   `(company-scrollbar-fg
+     ((t (:background ,gwhite))))
+
+   `(company-preview
+     ((t (:foreground ,lgray :background ,gblack))))
+
+   `(company-preview-common
+     ((t (:foreground ,gwhite :weight bold))))
+
+
    ;; helm
    `(helm-header ((t (:foreground ,dgray :background ,gblack :underline nil :box nil))))
    `(helm-source-header
@@ -316,7 +305,7 @@
                                           :slant unspecified :underline ,lgray))))
    `(flyspell-incorrect ((,class (:weight unspecified :foreground unspecified
                                           :slant unspecified :underline ,sgray)))))
-   
+  
   (custom-theme-set-variables
    'minimal
    `(ansi-color-names-vector [,gblack ,lgray ,dgray ,sgray])))

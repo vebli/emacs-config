@@ -1,7 +1,7 @@
 ;; unbind some emacs keys
 (dolist (k '("C-p" "C-n" "C-f" "C-b" "C-a" "C-e"
              "C-k" "C-d" "C-j" "C-o" "C-w" "M-d" "M-DEL" "M-l" "M-u" "M-c"
-	     "C-?" "C-/" "C-_"
+	     "C-?" "C-/" "C-_" "C-SPC"
 	     ))
   (global-unset-key (kbd k)))
 
@@ -12,6 +12,10 @@
 (global-set-key (kbd "C-j") 'windmove-down)
 (global-set-key (kbd "C-k") 'windmove-up)
 (global-set-key (kbd "C-l") 'windmove-right)
+
+;;Lsp
+(with-eval-after-load 'company
+  (define-key company-mode-map (kbd "C-SPC") 'company-complete))
 
 
 ;; Leader keys
@@ -34,8 +38,8 @@
   "bp" '(previous-buffer :which-key "Previous buffer")
   "bm" '(counsel-switch-buffer :which-key "List buffers")
   "h" '(help-command :which-key "Help")
-  "tt" '(toggle-term-term :which-key "Toggle terminal")
-  "x" '(:ignore t :which-key "eval")
+  "nh" '(evil-ex-nohighlight :which-key "Remove highlights")
+  "x" '(:ignore t)
   "xx" '(eval-last-sexp :which-key "eval sexp")
   "xb" '(eval-buffer :which-key "eval buffer")
   )
