@@ -29,7 +29,7 @@
 (leader
   "mx" '(counsel-M-x :which-key "Execute command")
   "ff" '(find-file :which-key "Find file")
-  "fp" 'projectile-switch-project
+  "fp" #'project-switch-project
   "bn" '(next-buffer :which-key "Next buffer")
   "bp" '(previous-buffer :which-key "Previous buffer")
   "bm" '(counsel-switch-buffer :which-key "List buffers")
@@ -47,7 +47,6 @@
     "gr" '(lsp-find-references :which-key "Find references")
     "gi" '(lsp-find-implementation :which-key "Find implementation")
     "gt" '(lsp-find-type-definition :which-key "Find type definition")
-    ;; "fc" 'projectile-toggle-between-implementation-and-test
     "fc" 'lsp-clangd-find-other-file
     "K" 'lsp-ui-doc-glance
     "td" 'flymake-show-project-diagnostics
@@ -57,7 +56,6 @@
     "lf" 'lsp-format-buffer
     "lh" 'lsp-treemacs-call-hierarchy
     "ls" 'lsp-treemacs-symbols
-    "lg" 'projectile-ripgrep
     )
   )
 

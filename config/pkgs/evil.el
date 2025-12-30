@@ -5,6 +5,8 @@
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-undo-system 'undo-redo)
+  (setq evil-search-module 'evil-search)
+  (setq evil-ex-search-persistent-highlight t)
   :config
   (evil-mode 1))
 
@@ -29,3 +31,9 @@
   :after evil
   :config
   (evil-commentary-mode))
+
+(use-package evil-cleverparens
+  :ensure t
+  :after evil
+  :config
+  (require 'evil-cleverparens-text-objects))

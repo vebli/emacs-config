@@ -16,28 +16,17 @@
 
 (use-package magit)
 
-
 (use-package toggle-term)
+(require 'project)
 
 (load (expand-file-name "config/pkgs/evil.el" user-emacs-directory))
+; (load (expand-file-name "config/pkgs/smartparens.el" user-emacs-directory))
 ; (load (expand-file-name "config/pkgs/org.el" user-emacs-directory))
+; (load (expand-file-name "config/pkgs/projectile.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/general.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dev.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dashboard.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/completions.el" user-emacs-directory))
-(load (expand-file-name "config/pkgs/projectile.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/latex.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/pdf-tools.el" user-emacs-directory))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(general evil-org ivy evil command-log-mode)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
