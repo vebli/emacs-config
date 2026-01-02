@@ -9,6 +9,16 @@
 (set-fringe-mode -1)
 (menu-bar-mode -1)
 
+(use-package tab-bar
+  :ensure nil
+  :config
+  (setq tab-bar-close-button-show nil
+        tab-bar-new-button-show nil
+	tab-bar-separator " "
+	tab-bar-border 0
+	tab-bar-button-relief 0)
+    (tab-bar-mode 1))
+
 (column-number-mode)
 (global-display-line-numbers-mode t)
 

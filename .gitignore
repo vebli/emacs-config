@@ -1,6 +1,3 @@
-
-custom.el
-
 # Compiled
 *.elc
 
@@ -9,9 +6,8 @@ custom.el
 
 # Backup files
 *~
-
-# Undo-tree save-files
 *.~undo-tree
+undo
 
 # Buffers
 ~$
@@ -19,6 +15,9 @@ custom.el
 .\#
 
 # Other
+var
+custom.el
+projects
 .lsp-session-v1
 auto-save-list/
 eln-cache/

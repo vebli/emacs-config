@@ -1,10 +1,19 @@
+(use-package undo-fu
+  :ensure t)
+
+(use-package undo-fu-session
+  :after undo-fu
+  :config
+  (setq undo-fu-session-directory "~/.emacs.d/undo")
+  (global-undo-fu-session-mode))
+
 (use-package evil
   :ensure t
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-undo-system 'undo-redo)
+  (setq evil-undo-system 'undo-fu)
   (setq evil-search-module 'evil-search)
   (setq evil-ex-search-persistent-highlight t)
   :config
