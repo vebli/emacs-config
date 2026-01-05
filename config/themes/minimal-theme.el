@@ -41,7 +41,7 @@
    `(trailing-whitespace ((,class (:background ,error-color))))
 
    ;; Mode line faces
-   `(mode-line ((t ( :box (:line-width -1 :style released-button)))))
+   `(mode-line ((t (:background ,background :foreground ,foreground :box (:line-width -1 :style released-button)))))
    `(mode-line-inactive ((t (:box (:line-width -1 :style released-button)))))
 
    ;; Whitespace-mode

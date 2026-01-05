@@ -50,6 +50,7 @@
   "mx" '(counsel-M-x :which-key "Execute command")
   "ff" '(project-find-file :which-key "Find file")
   "fl" #'project-find-regexp
+  "fr" #'recentf
   "fp" #'project-switch-project
   "bn" '(next-buffer :which-key "Next buffer")
   "bp" '(previous-buffer :which-key "Previous buffer")

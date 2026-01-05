@@ -2,6 +2,7 @@
 (setq display-line-numbers-type 'relative)  
 (setq lsp-semantic-tokens-enable t)
 (setq ring-bell-function 'ignore)  
+(setq use-dialog-box nil)
 (global-display-line-numbers-mode t)       
 (scroll-bar-mode -1) 
 (tool-bar-mode -1)
