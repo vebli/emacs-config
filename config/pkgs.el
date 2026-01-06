@@ -1,8 +1,7 @@
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
-                         ("gnu" . "https://elpa.gnu.org/packages/")
-                         ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 (unless package-archive-contents
  (package-refresh-contents))
@@ -16,14 +15,8 @@
 
 (use-package magit)
 
-(use-package toggle-term)
-(require 'project)
-
 (load (expand-file-name "config/pkgs/evil.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/direnv.el" user-emacs-directory))
-; (load (expand-file-name "config/pkgs/smartparens.el" user-emacs-directory))
-; (load (expand-file-name "config/pkgs/org.el" user-emacs-directory))
-; (load (expand-file-name "config/pkgs/projectile.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/general.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dev.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dashboard.el" user-emacs-directory))

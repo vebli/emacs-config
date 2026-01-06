@@ -1,7 +1,9 @@
 (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
 
-(unless (server-running-p)
-  (server-start))
+; (require 'server)
+; (unless (server-running-p)
+;   (server-start))
+
 (setq server-window 'pop-to-buffer)
 (setq create-lockfiles nil)  ; Stop Emacs from creating .# lock files
 (setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
