@@ -27,7 +27,14 @@
   (custom-theme-set-faces
    'minimal
 
-   `(default ((,class (:foreground ,lgray :background ,background))))
+   `(default ((,class (:foreground ,lgray
+				   :background ,background
+				   :family     "FiraCode Nerd Font"
+				   :weight     medium
+				   :width      medium
+				   :height     140))))
+   `(variable-pitch ((t (:family "Inter" :weight regular))))
+
    `(cursor ((,class (:background ,lgray))))
 
    ;; Highlighting faces
@@ -41,8 +48,8 @@
    `(trailing-whitespace ((,class (:background ,error-color))))
 
    ;; Mode line faces
-   `(mode-line ((t (:background ,background :foreground ,foreground :box (:line-width -1 :style released-button)))))
-   `(mode-line-inactive ((t (:box (:line-width -1 :style released-button)))))
+   `(mode-line ((t (:background ,foreground :foreground ,linum :box nil))))
+   `(mode-line-inactive ((t (:box nil))))
 
    ;; Whitespace-mode
    `(whitespace-empty ((,class (:background unspecified :foreground ,error-color))))
@@ -175,10 +182,26 @@
    ;; easy-kill
    `(easy-kill-selection ((t (:background "#333333"))))
 
-   ;; Org-mode
+   ;; Org faces
+   `(org-level-1 ((t (:inherit variable-pitch :height 1.30 :weight semibold))))
+   `(org-level-2 ((t (:inherit variable-pitch :height 1.20 :weight medium))))
+   `(org-level-3 ((t (:inherit variable-pitch :height 1.14 :weight medium))))
+   `(org-level-4 ((t (:inherit variable-pitch :height 1.08 :weight normal))))
+   `(org-level-5 ((t (:inherit variable-pitch :height 1.04 :weight normal))))
+   `(org-level-6 ((t (:inherit variable-pitch :height 1.0  :weight normal))))
+   `(org-level-7 ((t (:inherit variable-pitch :height 1.0  :weight normal))))
+   `(org-level-8 ((t (:inherit variable-pitch :height 1.0  :weight normal))))
+   `(org-document-title ((t (:inherit variable-pitch :height 1.9 :weight bold))))
+   `(org-code ((t (:inherit fixed-pitch))))
+   `(org-block ((t (:inherit fixed-pitch :background "#2d2a3a"))))
+   `(org-block-begin-line ((t (:inherit fixed-pitch :background "#2d2a3a" :foreground ,comment))))
+   `(org-block-end-line ((t (:inherit fixed-pitch :background "#2d2a3a" :foreground ,comment))))
+   `(org-table ((t (:inherit fixed-pitch))))
+   `(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+   `(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
    `(org-link ((t (:foreground ,sgray :underline t))))
-   `(org-todo ((t (:bold t :foreground ,error-color))))
-   `(org-done ((t (:bold t :foreground "green"))))
+   `(org-todo ((t (:weight bold :foreground ,error-color))))
+   `(org-done ((t (:weight bold :foreground "green"))))
    `(org-verbatim ((t (:foreground "dim gray"))))
 
    ;; Company

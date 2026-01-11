@@ -3,6 +3,15 @@
 
 (use-package clojure-mode
              :ensure t)
+
+(use-package cider
+  :ensure t
+  :init
+  (setq cider-repl-display-help-banner nil
+	 cider-show-error-buffer t
+	 cider-auto-select-error-buffer t)
+  :hook (clojure-mode . cider-mode))
+
 (use-package haskell-mode
              :ensure t)
 (use-package nix-mode

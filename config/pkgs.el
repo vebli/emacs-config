@@ -19,6 +19,7 @@
 (load (expand-file-name "config/pkgs/direnv.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/general.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dev.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/org.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/dashboard.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/completions.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/latex.el" user-emacs-directory))

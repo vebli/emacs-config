@@ -5,8 +5,8 @@
   (load (expand-file-name relative-path user-emacs-directory)))
 
 (include "config/pkgs.el")
-(include "config/ui.el")
 (include "config/options.el")
+(include "config/ui.el")
 
 (load custom-file 'noerror)
 
