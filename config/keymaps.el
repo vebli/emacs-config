@@ -1,10 +1,9 @@
 ;; unbind some emacs keys
-(dolist (k '("C-p" "C-n" "C-f" "C-b" "C-a" "C-e" 
+(dolist (k '("C-p" "C-n" "C-f" "C-b" "C-a" "C-e" "C-t"
              "C-k" "C-d" "C-j" "C-o" "C-w" "M-d" "M-DEL" "M-l" "M-u" "M-c"
 	     "C-?" "C-/" "C-_" "C-SPC" "C-s"
 	     ))
   (global-unset-key (kbd k)))
-
 (global-set-key (kbd "C-/") help-map)
 
 ;; window navigation
@@ -12,6 +11,12 @@
 (global-set-key (kbd "C-j") 'windmove-down)
 (global-set-key (kbd "C-k") 'windmove-up)
 (global-set-key (kbd "C-l") 'windmove-right)
+(global-set-key (kbd "C-c -t") #'toggle-term-vterm)
+
+(define-key vterm-mode-map (kbd "C-h") 'windmove-left)
+(define-key vterm-mode-map (kbd "C-j") 'windmove-down)
+(define-key vterm-mode-map (kbd "C-k") 'windmove-up)
+(define-key vterm-mode-map (kbd "C-l") 'windmove-right)
 
 ;; completion
 (with-eval-after-load 'company
@@ -28,7 +33,6 @@
 (define-key veb/tmux-map (kbd "&") #'tab-bar-close-tab)
 (define-key veb/tmux-map (kbd "n") #'tab-bar-switch-to-next-tab)
 (define-key veb/tmux-map (kbd "p") #'tab-bar-switch-to-prev-tab)
-(define-key veb/tmux-map (kbd "t") #'toggle-term-vterm)
 (dotimes (i 9)
   (define-key veb/tmux-map (kbd (number-to-string (1+ i)))
     `(lambda () (interactive)

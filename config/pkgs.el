@@ -26,4 +26,5 @@
 (load (expand-file-name "config/pkgs/completions.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/latex.el" user-emacs-directory))
 (load (expand-file-name "config/pkgs/pdf-tools.el" user-emacs-directory))
+(load (expand-file-name "config/pkgs/vterm.el" user-emacs-directory))
 
