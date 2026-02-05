@@ -4,6 +4,7 @@
 	visual-fill-column-center-text t)  
   )
 (use-package org
+  :pin gnu  
   :hook
   ((org-mode . org-latex-preview-auto-mode)
    (org-mode . font-lock-mode)

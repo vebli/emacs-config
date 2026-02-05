@@ -13,34 +13,50 @@
 (global-set-key (kbd "C-k") 'windmove-up)
 (global-set-key (kbd "C-l") 'windmove-right)
 
-;;Lsp
+;; completion
 (with-eval-after-load 'company
   (define-key company-mode-map (kbd "C-SPC") 'company-complete))
 
 ;; Tmux style keybinds
-(defvar my/tmux-map
+(defvar veb/tmux-map
   (let ((map (make-sparse-keymap)))
     map)
   "Tmux-style prefix map bound to C-s.")
-(global-set-key (kbd "C-s") my/tmux-map)
-(define-key my/tmux-map (kbd "c") #'tab-bar-new-tab)
-(define-key my/tmux-map (kbd ",") #'tab-bar-rename-tab)
-(define-key my/tmux-map (kbd "&") #'tab-bar-close-tab)
-(define-key my/tmux-map (kbd "n") #'tab-bar-switch-to-next-tab)
-(define-key my/tmux-map (kbd "p") #'tab-bar-switch-to-prev-tab)
+(global-set-key (kbd "C-s") veb/tmux-map)
+(define-key veb/tmux-map (kbd "c") #'tab-bar-new-tab)
+(define-key veb/tmux-map (kbd ",") #'tab-bar-rename-tab)
+(define-key veb/tmux-map (kbd "&") #'tab-bar-close-tab)
+(define-key veb/tmux-map (kbd "n") #'tab-bar-switch-to-next-tab)
+(define-key veb/tmux-map (kbd "p") #'tab-bar-switch-to-prev-tab)
+(define-key veb/tmux-map (kbd "t") #'toggle-term-vterm)
 (dotimes (i 9)
-  (define-key my/tmux-map (kbd (number-to-string (1+ i)))
+  (define-key veb/tmux-map (kbd (number-to-string (1+ i)))
     `(lambda () (interactive)
        (tab-bar-select-tab ,(1+ i)))))
-(define-key my/tmux-map (kbd "%") #'split-window-right)
-(define-key my/tmux-map (kbd "\"") #'split-window-below)
-(define-key my/tmux-map (kbd "x") #'delete-window)
-(define-key my/tmux-map (kbd "H") #'shrink-window-horizontally)
-(define-key my/tmux-map (kbd "L") #'enlarge-window-horizontally)
-(define-key my/tmux-map (kbd "J") #'shrink-window)
-(define-key my/tmux-map (kbd "K") #'enlarge-window)
+(define-key veb/tmux-map (kbd "%") #'split-window-right)
+(define-key veb/tmux-map (kbd "\"") #'split-window-below)
+(define-key veb/tmux-map (kbd "x") #'delete-window)
+(define-key veb/tmux-map (kbd "H") #'shrink-window-horizontally)
+(define-key veb/tmux-map (kbd "L") #'enlarge-window-horizontally)
+(define-key veb/tmux-map (kbd "J") #'shrink-window)
+(define-key veb/tmux-map (kbd "K") #'enlarge-window)
 
 ;; Vim style keybinds
+(with-eval-after-load 'evil
+  ;; Normal + Visual
+  (evil-define-key '(normal visual) smartparens-mode-map
+    ")" #'sp-forward-sexp
+    "(" #'sp-backward-sexp
+    "]" #'sp-down-sexp
+    "[" #'sp-backward-up-sexp
+
+    "gt" #'sp-transpose-sexp
+    "gT" #'sp-transpose-hybrid-sexp)
+
+  (evil-define-key 'insert smartparens-mode-map
+    (kbd "RET") #'sp-newline))
+
+  ;; SPC leader
 (general-create-definer leader
   :states '(normal visual motion) ;; Define states here
   :keymaps 'override  ;; Ensures it works globally
@@ -48,6 +64,12 @@
 
 (leader
   "mx" '(counsel-M-x :which-key "Execute command")
+  "h" '(help-command :which-key "Help")
+  "nh" '(evil-ex-nohighlight :which-key "Remove highlights")
+  "x" '(:ignore t)
+  "xx" '(eval-last-sexp :which-key "eval sexp")
+  "xb" '(eval-buffer :which-key "eval buffer")
+
   "ff" '(project-find-file :which-key "Find file")
   "fl" #'project-find-regexp
   "fr" #'recentf
@@ -55,13 +77,19 @@
   "bn" '(next-buffer :which-key "Next buffer")
   "bp" '(previous-buffer :which-key "Previous buffer")
   "bm" '(counsel-switch-buffer :which-key "List buffers")
-  "h" '(help-command :which-key "Help")
-  "nh" '(evil-ex-nohighlight :which-key "Remove highlights")
-  "x" '(:ignore t)
-  "xx" '(eval-last-sexp :which-key "eval sexp")
-  "xb" '(eval-buffer :which-key "eval buffer")
   "-" #'(lambda () (interactive) (dired (file-name-directory (buffer-file-name))))
-  )
+
+  ">" #'sp-forward-slurp-sexp
+  "<" #'sp-forward-barf-sexp
+  "g>" #'sp-backward-slurp-sexp
+  "g<" #'sp-backward-barf-sexp
+  "(" #'sp-wrap-round
+  "[" #'sp-wrap-square
+  "{" #'sp-wrap-curly
+  ")" #'sp-unwrap-sexp
+  "]" #'sp-unwrap-sexp
+  "}" #'sp-unwrap-sexp
+)
 
 (general-create-definer leader-lsp
   :states '(normal) 
@@ -86,7 +114,6 @@
     "ls" #'lsp-treemacs-symbols
     )
   )
-
 
 (evil-ex-define-cmd "q" 
   (lambda ()

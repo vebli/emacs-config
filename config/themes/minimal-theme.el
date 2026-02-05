@@ -355,7 +355,3 @@
 
 (provide-theme 'minimal)
 
-;; Local Variables:
-;; End:
-
-;;; minimal-theme.el ends here

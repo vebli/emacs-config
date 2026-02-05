@@ -41,8 +41,12 @@
   :config
   (evil-commentary-mode))
 
-(use-package evil-cleverparens
-  :ensure t
-  :after evil
-  :config
-  (require 'evil-cleverparens-text-objects))
+;; (use-package evil-cleverparens
+;;   :ensure t
+;;   :hook ((clojure-mode     . evil-cleverparens-mode)
+;; 	 (emacs-lisp-mode  . evil-cleverparens-mode)
+;; 	 (scheme-mode      . evil-cleverparens-mode))
+;;   :after evil
+;;   :config
+;;   (require 'evil-cleverparens-text-objects))
+
