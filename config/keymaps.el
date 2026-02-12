@@ -82,11 +82,10 @@
   "bp" '(previous-buffer :which-key "Previous buffer")
   "bm" '(counsel-switch-buffer :which-key "List buffers")
   "-" #'(lambda () (interactive) (dired (file-name-directory (buffer-file-name))))
-
-  ">" #'sp-forward-slurp-sexp
-  "<" #'sp-forward-barf-sexp
-  "g>" #'sp-backward-slurp-sexp
-  "g<" #'sp-backward-barf-sexp
+  ">)" #'sp-forward-slurp-sexp
+  "<)" #'sp-forward-barf-sexp
+  ">(" #'sp-backward-slurp-sexp
+  "<(" #'sp-backward-barf-sexp
   "(" #'sp-wrap-round
   "[" #'sp-wrap-square
   "{" #'sp-wrap-curly
@@ -119,11 +118,23 @@
     )
   )
 
+(general-create-definer localleader
+  :states '(normal) 
+  :keymaps 'cider-mode-map
+  :prefix ",")  
+
+(with-eval-after-load 'cider-mode
+  (localleader
+   "ee" #'cider-eval-defun-at-point
+   "ef" #'cider-eval-file
+   "eE" #'cider-eval-region
+   "eb" #'cider-load-buffer))
+
 (evil-ex-define-cmd "q" 
-  (lambda ()
-    "Close window and kill buffer, like in Vim."
-    (interactive)
-    (kill-buffer)
-    (if (> (count-windows) 1)
-	(delete-window)
-    (previous-buffer))))
+		    (lambda ()
+		      "Close window and kill buffer, like in Vim."
+		      (interactive)
+		      (kill-buffer)
+		      (if (> (count-windows) 1)
+			  (delete-window)
+			(previous-buffer))))

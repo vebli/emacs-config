@@ -6,6 +6,7 @@
 
 (include "config/pkgs.el")
 (include "config/options.el")
+(include "config/projects.el")
 (include "config/ui.el")
 (include "config/keymaps.el")
 

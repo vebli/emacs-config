@@ -18,6 +18,8 @@
              :ensure t)
 (use-package markdown-mode
              :ensure t)
+(use-package sql-indent
+  :ensure t) ; fix weird sql-mode indentation behaviour
 
 (use-package lsp-mode
              :ensure t
@@ -31,6 +33,8 @@
                     (vhdl-mode . lsp-deferred)
                     (verilog-mode . lsp-deferred)
 
+		    (sql-mode . lsp-deferred)
+		    (sql-mode . sqlind-minor-mode)
                     (lua-ts-mode . lsp-deferred)
                     (go-ts-mode . lsp-deferred)
                     (python-ts-mode . lsp-deferred)

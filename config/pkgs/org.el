@@ -12,8 +12,8 @@
    (org-mode . visual-fill-column-mode)
    (org-mode . visual-line-mode))
   :init
-  (setq org-startup-with-inline-images t
-	org-startup-with-latex-preview t
+  (setq ;;org-startup-with-inline-images t
+	;; org-startup-with-latex-preview t
 	org-confirm-babel-evaluate nil
 	org-hide-emphasis-markers t
 	org-preview-latex-default-process 'dvisvgm
@@ -38,7 +38,7 @@
 	  (sql . t)
 	  ))
   :config
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.8))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages))
 
 
@@ -48,7 +48,7 @@
   :hook (org-roam-mode . org-roam-db-autosync-mode)
   :init (setq org-roam-v2-ack t
 	      org-roam-directory (file-truename "~/Sync/Org")
-	      org-roam-dailies-directory (file-truename "~/Sync/Org/Journal/Dailies/")
+	      org-roam-dailies-directory (file-truename "~/Sync/Org/journal/daily/")
 	      org-roam-complete-everywhere t
 	      ))
 
@@ -159,22 +159,23 @@
 ;;   :hook (org-mode . org-modern-mode)
 ;;   )
   
-;; (use-package org-download
-;;   :after org
-;;   :hook
-;;   (dired-mode . org-download-enable)
-;;   :custom
-;;   (org-download-image-dir "~/org/Resources/Images/")
-;;   (org-download-timestamp "%Y%m%d-%H%M%S_")
-;;   )
+(use-package org-download
+  :after org
+  :hook
+  (dired-mode . org-download-enable)
+  :custom
+  (org-download-image-dir "~/org/resources/images/")
+  (org-download-timestamp "%Y%m%d-%H%M%S_")
+  )
 
-;; (use-package openwith
-;;   :after org
-;;   :hook (org-mode . (lambda () (openwith-mode 1)))
-;;   :custom
-;;   (openwith-associations
-;;         '(("\\.pdf\\'" "okular" (file))
-;;           ("\\.mp3\\'" "mpv" (file))))
-;;   )
+(use-package openwith
+  :after org
+  :hook (org-mode . (lambda () (openwith-mode 1)))
+  :custom
+  (openwith-associations
+        '(("\\.pdf\\'" "okular" (file))
+	  ("\\.xoop\\'" "xournalpp" (file))
+          ("\\.mp3\\'" "mpv" (file))))
+  )
 
 

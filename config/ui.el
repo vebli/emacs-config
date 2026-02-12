@@ -21,7 +21,6 @@
     (tab-bar-mode 1))
 
 (column-number-mode)
-(global-display-line-numbers-mode t)
 
 ;; Disable line numbers in certain modes
 (dolist (mode '(term-mode-hook
