@@ -9,6 +9,7 @@
   :init
   (setq cider-repl-display-help-banner nil
 	 cider-show-error-buffer t
+	 cider-babashka-command "bb"
 	 cider-auto-select-error-buffer t)
   :hook (clojure-mode . cider-mode))
 
@@ -18,8 +19,10 @@
              :ensure t)
 (use-package markdown-mode
              :ensure t)
+
 (use-package sql-indent
   :ensure t) ; fix weird sql-mode indentation behaviour
+
 
 (use-package lsp-mode
              :ensure t

@@ -11,7 +11,7 @@
 (global-set-key (kbd "C-j") 'windmove-down)
 (global-set-key (kbd "C-k") 'windmove-up)
 (global-set-key (kbd "C-l") 'windmove-right)
-(global-set-key (kbd "C-c -t") #'toggle-term-vterm)
+(global-set-key (kbd "C-c C-t") #'toggle-term-vterm)
 
 (define-key vterm-mode-map (kbd "C-h") 'windmove-left)
 (define-key vterm-mode-map (kbd "C-j") 'windmove-down)
@@ -54,6 +54,11 @@
     "]" #'sp-down-sexp
     "[" #'sp-backward-up-sexp
 
+    ">)" #'sp-forward-slurp-sexp
+    "<)" #'sp-forward-barf-sexp
+    ">(" #'sp-backward-slurp-sexp
+    "<(" #'sp-backward-barf-sexp
+
     "gt" #'sp-transpose-sexp
     "gT" #'sp-transpose-hybrid-sexp)
 
@@ -65,6 +70,29 @@
   :states '(normal visual motion) ;; Define states here
   :keymaps 'override  ;; Ensures it works globally
   :prefix "SPC")  ;; Sets Space as leader key
+
+;; (defun veb/project-buffers ()
+;;   "Return a list of buffers belonging to the current project."
+;;   (when-let ((project (project-current)))
+;;     (project-buffers project)))
+
+;; (defun veb/project-next-buffer ()
+;;   "Switch to the next buffer in the current project."
+;;   (interactive)
+;;   (let* ((buffers (veb/project-buffers))
+;;          (next (cadr (member (current-buffer) buffers))))
+;;     (if next
+;;         (switch-to-buffer next)
+;;       (message "No next project buffer"))))
+
+;; (defun veb/project-prev-buffer ()
+;;   "Switch to the previous buffer in the current project."
+;;   (interactive)
+;;   (let* ((buffers (reverse (veb/project-buffers)))
+;;          (prev (cadr (member (current-buffer) buffers))))
+;;     (if prev
+;;         (switch-to-buffer prev)
+;;       (message "No previous project buffer"))))
 
 (leader
   "mx" '(counsel-M-x :which-key "Execute command")
@@ -80,19 +108,15 @@
   "fp" #'project-switch-project
   "bn" '(next-buffer :which-key "Next buffer")
   "bp" '(previous-buffer :which-key "Previous buffer")
-  "bm" '(counsel-switch-buffer :which-key "List buffers")
+  "bm" #'project-switch-to-buffer
   "-" #'(lambda () (interactive) (dired (file-name-directory (buffer-file-name))))
-  ">)" #'sp-forward-slurp-sexp
-  "<)" #'sp-forward-barf-sexp
-  ">(" #'sp-backward-slurp-sexp
-  "<(" #'sp-backward-barf-sexp
   "(" #'sp-wrap-round
   "[" #'sp-wrap-square
   "{" #'sp-wrap-curly
   ")" #'sp-unwrap-sexp
   "]" #'sp-unwrap-sexp
   "}" #'sp-unwrap-sexp
-)
+  )
 
 (general-create-definer leader-lsp
   :states '(normal) 
@@ -118,8 +142,31 @@
     )
   )
 
+;; clojure keymaps
+
+(with-eval-after-load 'evil
+  ;; Normal + Visual
+  (evil-define-key '(normal visual) clojure-mode-map
+    "cfa" #'clojure-thread-first-all
+    "cfs" #'clojure-thread-first
+    "cla" #'clojure-thread-last-all
+    "cls" #'clojure-thread-last
+
+    "cu" #'clojure-unwind
+    "cu" #'clojure-unwind-all
+
+    "cs(" #'clojure-convert-collection-to-list
+    "cs'" #'clojure-convert-collection-to-quoted-list
+    "cs[" #'clojure-convert-collection-to-vector
+    "cs{" #'clojure-convert-collection-to-map
+    "cs#" #'clojure-convert-collection-to-set
+
+    "cml" #'clojure-move-to-let
+
+    "cpl" #'clojure-promote-fn-literal))
+
 (general-create-definer localleader
-  :states '(normal) 
+  :states '(normal visual) 
   :keymaps 'cider-mode-map
   :prefix ",")  
 
@@ -128,6 +175,7 @@
    "ee" #'cider-eval-defun-at-point
    "ef" #'cider-eval-file
    "eE" #'cider-eval-region
+   "cji" #'cider-jack-in
    "eb" #'cider-load-buffer))
 
 (evil-ex-define-cmd "q" 
