@@ -183,6 +183,7 @@
    `(easy-kill-selection ((t (:background "#333333"))))
 
    ;; Org faces
+   `(org-document-title ((t (:inherit variable-pitch :height 1.30 :weight semibold))))
    `(org-level-1 ((t (:inherit variable-pitch :height 1.30 :weight semibold))))
    `(org-level-2 ((t (:inherit variable-pitch :height 1.20 :weight medium))))
    `(org-level-3 ((t (:inherit variable-pitch :height 1.14 :weight medium))))

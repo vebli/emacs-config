@@ -7,9 +7,8 @@
   :pin gnu  
   :hook
   ((org-mode . font-lock-mode)
-   (org-mode . variable-pitch-mode)
-   (org-mode . visual-fill-column-mode)
-   (org-mode . visual-line-mode))
+   ;; (org-mode . visual-fill-column-mode)
+   (org-mode . variable-pitch-mode))
   :init
   (setq ;;org-startup-with-inline-images t
 	;; org-startup-with-latex-preview t
