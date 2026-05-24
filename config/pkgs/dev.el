@@ -26,8 +26,15 @@
 
 (use-package lsp-mode
              :ensure t
-             :init (setq lsp-completion-provider :capf)
+             :init (setq
+		    major-mode-remap-alist
+		    '((c-mode . c-ts-mode)
+		      (c++-mode . c++-ts-mode)
+		      (c-or-c++-mode . c-or-c++-ts-mode))
+		    lsp-completion-provider :capf)
              :hook ((asm-mode . lsp-deferred)
+                    (c-mode . lsp-deferred)
+                    (c++-mode . lsp-deferred)
                     (c-ts-mode . lsp-deferred)
                     (c++-ts-mode . lsp-deferred)
                     (cmake-ts-mode . lsp-deferred)
