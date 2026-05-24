@@ -54,10 +54,10 @@
     "]" #'sp-down-sexp
     "[" #'sp-backward-up-sexp
 
-    ">)" #'sp-forward-slurp-sexp
-    "<)" #'sp-forward-barf-sexp
-    ">(" #'sp-backward-slurp-sexp
-    "<(" #'sp-backward-barf-sexp
+    "s)" #'sp-forward-slurp-sexp
+    "s(" #'sp-backward-slurp-sexp
+    "s]" #'sp-forward-barf-sexp
+    "s[" #'sp-backward-barf-sexp
 
     "gt" #'sp-transpose-sexp
     "gT" #'sp-transpose-hybrid-sexp)
@@ -124,6 +124,9 @@
   :prefix "SPC")  
 
 (with-eval-after-load 'lsp-mode
+  (evil-define-key '(normal visual) lsp-mode-map
+    "K" #'lsp-ui-doc-glance
+    )
   (leader-lsp
     "rn" '(lsp-rename :which-key "Rename Symbol")
     "gd" '(lsp-find-definition :which-key "Go to definition")
@@ -132,7 +135,6 @@
     "gt" '(lsp-find-type-definition :which-key "Find type definition")
     "lf" #'format-all-region-or-buffer
     "fc" #'lsp-clangd-find-other-file
-    "K" #'lsp-ui-doc-glance
     "td" #'flymake-show-project-diagnostics
     "]g" #'flymake-goto-next-error
     "[g" #'flymake-goto-prev-error
